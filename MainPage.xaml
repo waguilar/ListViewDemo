@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<template:PageTemplate xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+                       xmlns:local="clr-namespace:ListViewDemo"
+                       xmlns:template="clr-namespace:ListViewDemo.Templates"
+                       x:Class="ListViewDemo.MainPage"
+                       NavigationPage.HasNavigationBar="False">
+
+    <template:PageTemplate.NavBarRightIcons>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="End">
+            <Label Text="A"/>
+            <Label Text="B"/>
+            <Label Text="C"/>
+        </StackLayout>
+    </template:PageTemplate.NavBarRightIcons>
+
+    <template:PageTemplate.HeaderContent>
+        <Entry Text="Search Criteria"/>
+    </template:PageTemplate.HeaderContent>
+    
+    <template:PageTemplate.BodyContent>
+        <syncfusion:SfListView x:Name="ListView" ItemsSource="{Binding BookList}" >
+
+            <syncfusion:SfListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Text="{Binding Key}" Background="skyblue"/>
+                                <BoxView BackgroundColor ="Gray" HeightRequest ="0.5" Margin="0"/>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </syncfusion:SfListView.GroupHeaderTemplate>
+
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--First Row-->
+                            <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding Title}"
+                               HorizontalTextAlignment="Start"
+                               LineBreakMode="TailTruncation"/>
+
+                            <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding Author}"
+                               HorizontalTextAlignment="End"
+                               LineBreakMode="HeadTruncation"/>
+
+
+                            <!--Second Row-->
+                            <Label Grid.Row="1"
+                               Grid.Column="0"
+                               HorizontalTextAlignment="Start"
+                               Text="{Binding Publisher}"
+                               LineBreakMode="MiddleTruncation"/>
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Genre}"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+                        <!--Separator-->
+                        <BoxView BackgroundColor ="Gray"
+                             HeightRequest ="0.5"
+                             Margin="0,1"/>
+
+                    </StackLayout>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+    </template:PageTemplate.BodyContent>
+
+    <template:PageTemplate.FooterContent>
+        <Grid HeightRequest="{DynamicResource THBottomStackHeight}"
+              ColumnSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    Text="New"/>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Load"/>
+        </Grid>
+    </template:PageTemplate.FooterContent>
+    
+</template:PageTemplate>

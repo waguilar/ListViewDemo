@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListViewDemo.Templates.PageTemplate"
+             ControlTemplate="{StaticResource ListPageTemplate}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ControlTemplate x:Key="ListPageTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Header -->
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="0"
+                                 VerticalOptions="Start"
+                                 Orientation="Vertical">
+
+                            <StackLayout x:Name="ContextMenuItems"
+                                         VerticalOptions="Start">
+                                <ContentPresenter Content="{TemplateBinding NavBarRightIcons}" />
+                            </StackLayout>
+
+                        <ContentPresenter Content="{TemplateBinding HeaderContent}"
+                                          Padding="16,0" />
+
+                        <BoxView Style="{StaticResource PageHeader.Separator}" />
+
+                    </StackLayout>
+
+                    <!-- Body -->
+                    <ContentPresenter Grid.Row="1"
+                                      Grid.Column="0" 
+                                      Content="{TemplateBinding BodyContent}"
+                                      VerticalOptions="FillAndExpand"/>
+
+                    <!-- Footer -->
+                    <ContentPresenter Grid.Row="2"
+                                      Grid.Column="0"
+                                      VerticalOptions="Start"
+                                      Content="{TemplateBinding FooterContent}" />
+
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>
